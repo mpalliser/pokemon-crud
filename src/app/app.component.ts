@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ToolbarComponent } from './components/toolbar.component';
+import ToolbarComponent from './components/toolbar.component';
 
 @Component({
   standalone: true,
@@ -9,13 +9,11 @@ import { ToolbarComponent } from './components/toolbar.component';
   imports: [
     CommonModule,
     RouterModule,
-    ToolbarComponent
+    ToolbarComponent,
   ],
   template: `
   <app-toolbar></app-toolbar>
   <router-outlet></router-outlet>
   `,
 })
-export class AppComponent {
-  title = 'pokemon-crud';
-}
+export default class AppComponent {}

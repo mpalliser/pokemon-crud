@@ -13,17 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
   ],
-  template: `
-   <mat-toolbar color="primary" class="flex justify-content-space-between">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Pokemon crud</span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-  </mat-toolbar>
-  `,
+  templateUrl: './toolbar.component.html',
 })
-export class ToolbarComponent {
+export default class ToolbarComponent {
 }
