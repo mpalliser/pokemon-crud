@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import ToolbarComponent from './components/toolbar.component';
+import ToolbarComponent from '@components/toolbar.component';
 
 @Component({
   standalone: true,

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { Pokemon } from '../models/pokemon';
+import { Pokemon } from '@models/pokemon';
+import PokemonService from '@services/pokemon.service';
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import { Pokemon } from '../models/pokemon';
     MatIconModule,
     MatButtonModule,
   ],
+  providers: [PokemonService],
   templateUrl: './list.component.html',
 })
 export default class ListComponent {
