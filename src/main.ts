@@ -4,18 +4,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import AppComponent from './app/app.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'list',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'list',
-    loadComponent: () => import('./app/pages/list.component').then(m => m.default)
+    loadComponent: () => import('./app/pages/list.component').then((m) => m.default),
   },
 ];
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes), importProvidersFrom(BrowserAnimationsModule)]
-}).catch(error => console.error(error))
+  providers: [provideRouter(routes), importProvidersFrom(BrowserAnimationsModule)],
+}).catch((error) => console.error(error));
