@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,9 +14,7 @@ import PokemonService from '@services/pokemon.service';
     MatTableModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule,
   ],
-  providers: [PokemonService],
   templateUrl: './list.component.html',
 })
 export default class ListComponent implements OnInit {
@@ -28,8 +25,9 @@ export default class ListComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.pokemonService.getAll().subscribe((data: Pokemon[]) => {
-      this.dataSource = data;
+    this.pokemonService.pokemonSubscription.subscribe((pokemons: Pokemon[]) => {
+      this.dataSource = pokemons;
     });
+    this.pokemonService.fetchPokemon();
   }
 }
