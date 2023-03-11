@@ -18,7 +18,7 @@ import PokemonService from '@services/pokemon.service';
   templateUrl: './list.component.html',
 })
 export default class ListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'height', 'weight', 'image'];
+  displayedColumns: string[] = ['name', 'height', 'weight', 'actions'];
 
   dataSource: Pokemon[] = [];
 
