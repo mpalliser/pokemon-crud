@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" class="flex justify-content-space-between">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
+  <button mat-icon-button class="example-icon" matTooltip="Add pokemon" [routerLink]="['/detail']">
+    <mat-icon>add</mat-icon>
   </button>
-  <span>Pokemon crud</span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
+  <span routerLink="" class="cursor-pointer" matTooltip="Go to list">Pokemon crud</span>
+  <button mat-icon-button matTooltip="Social media">
+    <mat-icon>share</mat-icon>
   </button>
 </mat-toolbar>
