@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import ToolbarComponent from '@components/toolbar.component';
+import FilterComponent from '@components/filter/filter.component';
+import ToolbarComponent from '@components/toolbar/toolbar.component';
 
 @Component({
   standalone: true,
@@ -10,9 +11,11 @@ import ToolbarComponent from '@components/toolbar.component';
     CommonModule,
     RouterModule,
     ToolbarComponent,
+    FilterComponent,
   ],
   template: `
   <app-toolbar></app-toolbar>
+  <app-filter></app-filter>
   <router-outlet></router-outlet>
   `,
 })
