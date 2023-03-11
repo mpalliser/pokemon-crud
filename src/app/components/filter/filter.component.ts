@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import PokemonService from '@services/pokemon.service';
-import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import {
+  debounceTime, distinctUntilChanged, Subject, takeUntil,
+} from 'rxjs';
 
 @Component({
   standalone: true,
