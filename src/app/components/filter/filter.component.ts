@@ -17,10 +17,9 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
   templateUrl: './filter.component.html',
 })
 export default class FilterComponent implements OnInit, OnDestroy {
+  pokemonFormControl: FormControl = new FormControl<string>('');
 
-  pokemonFormControl: FormControl = new FormControl('')
-
-  private destroySubscriptions = new Subject()
+  private destroySubscriptions = new Subject();
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -29,8 +28,8 @@ export default class FilterComponent implements OnInit, OnDestroy {
       .pipe(
         distinctUntilChanged(),
         debounceTime(500),
-        takeUntil(this.destroySubscriptions)
-      ).subscribe(value => this.pokemonService.fetchPokemon(value))
+        takeUntil(this.destroySubscriptions),
+      ).subscribe((value: string) => this.pokemonService.fetchPokemon(value));
   }
 
   ngOnDestroy(): void {

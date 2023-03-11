@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="detail-container">
+  <mat-form-field class="full-width">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput formControlName="name" placeholder="Name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Weight</mat-label>
+    <input type="text" matInput formControlName="weight" placeholder="Weight">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Height</mat-label>
+    <input type="text" matInput formControlName="height" placeholder="Height">
+  </mat-form-field>
+
+  <div class="flex justify-content-center">
+    <button mat-raised-button class="margin-right-1" (click)="form.reset()">Clear</button>
+    <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+  </div>
+</form>

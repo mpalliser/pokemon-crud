@@ -14,7 +14,15 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    loadComponent: () => import('./app/pages/list.component').then((m) => m.default),
+    loadComponent: () => import('./app/pages/list/list.component').then((m) => m.default),
+  },
+  {
+    path: 'detail',
+    loadComponent: () => import('./app/pages/detail/detail.component').then((m) => m.default),
+  },
+  {
+    path: 'detail/:name',
+    loadComponent: () => import('./app/pages/detail/detail.component').then((m) => m.default),
   },
 ];
 
