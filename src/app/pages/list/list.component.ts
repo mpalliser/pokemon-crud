@@ -41,6 +41,7 @@ export default class ListComponent implements OnInit {
   }
 
   remove(pokemon: Pokemon): void {
+    this.pokemonService.delete(pokemon.name);
     this.snackbar.open(`${pokemon.name} removed correctly`, 'Close', { duration: 3000 });
   }
 }
