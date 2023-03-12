@@ -2,5 +2,6 @@
   <mat-form-field class="full-width">
     <mat-label>Search your pokemon</mat-label>
     <input type="text" matInput [formControl]="pokemonFormControl" placeholder="Type your pokemon name here...">
+    <button *ngIf="pokemonFormControl.value" mat-icon-button matSuffix (click)="clearFilter()"><mat-icon>close</mat-icon></button>
   </mat-form-field>
 </div>
