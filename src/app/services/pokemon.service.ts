@@ -17,6 +17,8 @@ export default class PokemonService {
 
   private deletedNames: string[] = [];
 
+  private addedPokemon: Pokemon[] = [];
+
   public pokemonObservable = this.pokemonSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {}
@@ -27,10 +29,18 @@ export default class PokemonService {
       : this.getAll();
 
     call.subscribe((data: Pokemon[]) => {
-      this.pokemonSubject.next(
-        data.filter((pokemon: Pokemon) => !this.deletedNames.includes(pokemon.name)),
-      );
+      this.pokemonSubject.next([
+        ...data
+          .filter((pokemon: Pokemon) => !this.deletedNames.includes(pokemon.name))
+          .map((pokemon: Pokemon) => this.mapInMemoryPokemon(pokemon)),
+        ...this.addedPokemon.filter((pokemon: Pokemon) => !data
+          .some((a: Pokemon) => a.name === pokemon.name)),
+      ]);
     });
+  }
+
+  public addEdit(pokemon: Pokemon): void {
+    this.addedPokemon = [...this.addedPokemon, pokemon];
   }
 
   public fetchByName(name: string): Observable<Pokemon> {
@@ -40,6 +50,21 @@ export default class PokemonService {
   public delete(name: string): void {
     this.deletedNames = [...this.deletedNames, name];
     this.fetchPokemon();
+  }
+
+  public addToDeletedList(name: string): void {
+    this.deletedNames = [...this.deletedNames, name];
+  }
+
+  private mapInMemoryPokemon(pokemon: Pokemon): Pokemon {
+    const match = this.addedPokemon
+      .find((addedP: Pokemon) => (addedP.name === pokemon.name));
+    return {
+      ...pokemon,
+      name: match ? match.name : pokemon.name,
+      weight: match ? match.weight : pokemon.weight,
+      height: match ? match.height : pokemon.height,
+    };
   }
 
   private getAll(): Observable<Pokemon[]> {
