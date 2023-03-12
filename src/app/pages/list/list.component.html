@@ -4,7 +4,11 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element" class="flex align-items-center"><img [src]="element.sprites.front_default" alt="Pokemon img">{{ element.name | titlecase }}</td>
+      <td mat-cell *matCellDef="let element" class="flex align-items-center">
+        <img *ngIf="element.sprites" [src]="element.sprites.front_default" alt="Pokemon img">
+        <mat-icon class="unknown-pokemon-icon" *ngIf="!element.sprites">face_5</mat-icon>
+        <span>{{ element.name | titlecase }}</span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="height">
@@ -20,7 +24,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button [routerLink]="['/detail', element.name]" routerLinkActive="router-link-active" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <button *ngIf="element.sprites"
+          mat-icon-button [routerLink]="['/detail', element.name]" routerLinkActive="router-link-active"
+          class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button class="example-icon favorite-icon" (click)="remove(element)">
