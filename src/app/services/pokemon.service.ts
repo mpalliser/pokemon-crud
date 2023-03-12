@@ -15,6 +15,8 @@ export default class PokemonService {
 
   private pokemonSubject = new Subject<Pokemon[]>();
 
+  private deletedNames: string[] = [];
+
   public pokemonObservable = this.pokemonSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {}
@@ -25,12 +27,19 @@ export default class PokemonService {
       : this.getAll();
 
     call.subscribe((data: Pokemon[]) => {
-      this.pokemonSubject.next(data);
+      this.pokemonSubject.next(
+        data.filter((pokemon: Pokemon) => !this.deletedNames.includes(pokemon.name)),
+      );
     });
   }
 
   public fetchByName(name: string): Observable<Pokemon> {
     return this.httpClient.get<Pokemon>(`${this.END_POINT}/${name}`);
+  }
+
+  public delete(name: string): void {
+    this.deletedNames = [...this.deletedNames, name];
+    this.fetchPokemon();
   }
 
   private getAll(): Observable<Pokemon[]> {
